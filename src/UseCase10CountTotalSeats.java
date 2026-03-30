@@ -23,7 +23,7 @@ class Bogie {
     }
 }
 
-public class UseCase9GroupBogiesByType {
+public class UseCase10CountTotalSeats {
 
     public static void main(String[] args) {
 
@@ -33,30 +33,20 @@ public class UseCase9GroupBogiesByType {
 
         bogies.add(new Bogie("Sleeper", 72));
         bogies.add(new Bogie("AC Chair", 56));
-        bogies.add(new Bogie("Sleeper", 70));
         bogies.add(new Bogie("First Class", 24));
-        bogies.add(new Bogie("AC Chair", 60));
+        bogies.add(new Bogie("Sleeper", 70));
 
-        System.out.println("Original Bogie List:");
+        System.out.println("Bogie List:");
         for (Bogie b : bogies) {
             System.out.println(b);
         }
 
-        Map<String, List<Bogie>> groupedBogies =
+        int totalSeats =
                 bogies.stream()
-                        .collect(Collectors.groupingBy(Bogie::getName));
+                        .map(b -> b.getCapacity())
+                        .reduce(0, Integer::sum);
 
-        System.out.println("\nGrouped Bogies By Type:");
-
-        for (Map.Entry<String, List<Bogie>> entry : groupedBogies.entrySet()) {
-            System.out.println("\nType: " + entry.getKey());
-            for (Bogie b : entry.getValue()) {
-                System.out.println(b);
-            }
-        }
-
-        System.out.println("\nOriginal List Size: " + bogies.size());
-        System.out.println("Number of Groups: " + groupedBogies.size());
+        System.out.println("\nTotal Seating Capacity: " + totalSeats);
 
         System.out.println("Program continues...");
     }
