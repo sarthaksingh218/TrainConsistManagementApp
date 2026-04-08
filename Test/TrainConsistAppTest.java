@@ -4,49 +4,57 @@ import org.junit.jupiter.api.Test;
 public class TrainConsistAppTest {
 
     @Test
-    void testCargo_SafeAssignment() {
+    void testSort_BasicSorting() {
 
-        GoodsBogie bogie = new GoodsBogie("Cylindrical");
-        bogie.assignCargo("Petroleum");
+        int[] arr = {72, 56, 24, 70, 60};
+        TrainConsistApp.bubbleSort(arr);
 
-        assertEquals("Petroleum", bogie.getCargo());
+        int[] expected = {24, 56, 60, 70, 72};
+
+        assertArrayEquals(expected, arr);
     }
 
     @Test
-    void testCargo_UnsafeAssignmentHandled() {
+    void testSort_AlreadySortedArray() {
 
-        GoodsBogie bogie = new GoodsBogie("Rectangular");
-        bogie.assignCargo("Petroleum");
+        int[] arr = {24, 56, 60, 70, 72};
+        TrainConsistApp.bubbleSort(arr);
 
-        assertNull(bogie.getCargo());
+        int[] expected = {24, 56, 60, 70, 72};
+
+        assertArrayEquals(expected, arr);
     }
 
     @Test
-    void testCargo_CargoNotAssignedAfterFailure() {
+    void testSort_DuplicateValues() {
 
-        GoodsBogie bogie = new GoodsBogie("Rectangular");
-        bogie.assignCargo("Petroleum");
+        int[] arr = {72, 56, 56, 24};
+        TrainConsistApp.bubbleSort(arr);
 
-        assertNull(bogie.getCargo());
+        int[] expected = {24, 56, 56, 72};
+
+        assertArrayEquals(expected, arr);
     }
 
     @Test
-    void testCargo_ProgramContinuesAfterException() {
+    void testSort_SingleElementArray() {
 
-        GoodsBogie b1 = new GoodsBogie("Rectangular");
-        GoodsBogie b2 = new GoodsBogie("Cylindrical");
+        int[] arr = {50};
+        TrainConsistApp.bubbleSort(arr);
 
-        b1.assignCargo("Petroleum");
-        b2.assignCargo("Petroleum");
+        int[] expected = {50};
 
-        assertEquals("Petroleum", b2.getCargo());
+        assertArrayEquals(expected, arr);
     }
 
     @Test
-    void testCargo_FinallyBlockExecution() {
+    void testSort_AllEqualValues() {
 
-        GoodsBogie bogie = new GoodsBogie("Rectangular");
+        int[] arr = {40, 40, 40};
+        TrainConsistApp.bubbleSort(arr);
 
-        assertDoesNotThrow(() -> bogie.assignCargo("Petroleum"));
+        int[] expected = {40, 40, 40};
+
+        assertArrayEquals(expected, arr);
     }
 }
