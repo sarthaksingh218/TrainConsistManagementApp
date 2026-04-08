@@ -4,12 +4,25 @@ import org.junit.jupiter.api.Test;
 public class TrainConsistAppTest {
 
     @Test
-    void testSort_BasicSorting() {
+    void testSort_BasicAlphabeticalSorting() {
 
-        int[] arr = {72, 56, 24, 70, 60};
-        TrainConsistApp.bubbleSort(arr);
+        String[] arr = {"Sleeper","AC Chair","First Class","General","Luxury"};
 
-        int[] expected = {24, 56, 60, 70, 72};
+        TrainConsistApp.sortBogieNames(arr);
+
+        String[] expected = {"AC Chair","First Class","General","Luxury","Sleeper"};
+
+        assertArrayEquals(expected, arr);
+    }
+
+    @Test
+    void testSort_UnsortedInput() {
+
+        String[] arr = {"Luxury","General","Sleeper","AC Chair"};
+
+        TrainConsistApp.sortBogieNames(arr);
+
+        String[] expected = {"AC Chair","General","Luxury","Sleeper"};
 
         assertArrayEquals(expected, arr);
     }
@@ -17,21 +30,23 @@ public class TrainConsistAppTest {
     @Test
     void testSort_AlreadySortedArray() {
 
-        int[] arr = {24, 56, 60, 70, 72};
-        TrainConsistApp.bubbleSort(arr);
+        String[] arr = {"AC Chair","First Class","General"};
 
-        int[] expected = {24, 56, 60, 70, 72};
+        TrainConsistApp.sortBogieNames(arr);
+
+        String[] expected = {"AC Chair","First Class","General"};
 
         assertArrayEquals(expected, arr);
     }
 
     @Test
-    void testSort_DuplicateValues() {
+    void testSort_DuplicateBogieNames() {
 
-        int[] arr = {72, 56, 56, 24};
-        TrainConsistApp.bubbleSort(arr);
+        String[] arr = {"Sleeper","AC Chair","Sleeper","General"};
 
-        int[] expected = {24, 56, 56, 72};
+        TrainConsistApp.sortBogieNames(arr);
+
+        String[] expected = {"AC Chair","General","Sleeper","Sleeper"};
 
         assertArrayEquals(expected, arr);
     }
@@ -39,21 +54,11 @@ public class TrainConsistAppTest {
     @Test
     void testSort_SingleElementArray() {
 
-        int[] arr = {50};
-        TrainConsistApp.bubbleSort(arr);
+        String[] arr = {"Sleeper"};
 
-        int[] expected = {50};
+        TrainConsistApp.sortBogieNames(arr);
 
-        assertArrayEquals(expected, arr);
-    }
-
-    @Test
-    void testSort_AllEqualValues() {
-
-        int[] arr = {40, 40, 40};
-        TrainConsistApp.bubbleSort(arr);
-
-        int[] expected = {40, 40, 40};
+        String[] expected = {"Sleeper"};
 
         assertArrayEquals(expected, arr);
     }
