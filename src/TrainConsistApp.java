@@ -1,6 +1,6 @@
 import java.util.*;
 
-public class UseCase2AddPassengerBogies {
+public class TrainConsistApp {
 
     public static void main(String[] args) {
 
