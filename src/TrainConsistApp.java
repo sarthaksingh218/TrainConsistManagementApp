@@ -2,11 +2,31 @@ import java.util.Arrays;
 
 public class TrainConsistApp {
 
-    public static boolean searchBogieId(String[] bogieIds, String key) {
+    public static boolean binarySearchBogieId(String[] bogieIds, String key) {
 
-        for (int i = 0; i < bogieIds.length; i++) {
-            if (bogieIds[i].equals(key)) {
+        if (bogieIds == null || bogieIds.length == 0) {
+            return false;
+        }
+
+        Arrays.sort(bogieIds);
+
+        int low = 0;
+        int high = bogieIds.length - 1;
+
+        while (low <= high) {
+
+            int mid = (low + high) / 2;
+
+            int cmp = key.compareTo(bogieIds[mid]);
+
+            if (cmp == 0) {
                 return true;
+            }
+            else if (cmp < 0) {
+                high = mid - 1;
+            }
+            else {
+                low = mid + 1;
             }
         }
 
@@ -21,7 +41,7 @@ public class TrainConsistApp {
 
         String searchKey = "BG309";
 
-        boolean found = searchBogieId(bogieIds, searchKey);
+        boolean found = binarySearchBogieId(bogieIds, searchKey);
 
         if (found) {
             System.out.println("Bogie ID " + searchKey + " found in consist.");
