@@ -2,23 +2,32 @@ import java.util.Arrays;
 
 public class TrainConsistApp {
 
-    public static void sortBogieNames(String[] bogies) {
-        Arrays.sort(bogies);
+    public static boolean searchBogieId(String[] bogieIds, String key) {
+
+        for (int i = 0; i < bogieIds.length; i++) {
+            if (bogieIds[i].equals(key)) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     public static void main(String[] args) {
 
         System.out.println("=== Train Consist Management App ===");
 
-        String[] bogieNames = {"Sleeper", "AC Chair", "First Class", "General", "Luxury"};
+        String[] bogieIds = {"BG101","BG205","BG309","BG412","BG550"};
 
-        System.out.println("Original Bogie Names:");
-        System.out.println(Arrays.toString(bogieNames));
+        String searchKey = "BG309";
 
-        sortBogieNames(bogieNames);
+        boolean found = searchBogieId(bogieIds, searchKey);
 
-        System.out.println("Sorted Bogie Names:");
-        System.out.println(Arrays.toString(bogieNames));
+        if (found) {
+            System.out.println("Bogie ID " + searchKey + " found in consist.");
+        } else {
+            System.out.println("Bogie ID " + searchKey + " not found.");
+        }
 
         System.out.println("Program continues...");
     }
