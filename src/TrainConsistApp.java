@@ -22,7 +22,7 @@ class Bogie {
     }
 }
 
-public class UseCase7SortBogiesByCapacity {
+public class TrainConsistApp {
 
     public static void main(String[] args) {
 
