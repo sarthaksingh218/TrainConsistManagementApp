@@ -1,5 +1,4 @@
 import java.util.*;
-import java.util.stream.*;
 
 class Bogie {
     private String name;
@@ -23,7 +22,7 @@ class Bogie {
     }
 }
 
-public class UseCase10CountTotalSeats {
+public class TrainConsistApp {
 
     public static void main(String[] args) {
 
