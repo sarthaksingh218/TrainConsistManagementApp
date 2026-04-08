@@ -23,7 +23,7 @@ class Bogie {
     }
 }
 
-public class UseCase10CountTotalSeats {
+public class TrainConsistentApp {
 
     public static void main(String[] args) {
 
@@ -33,20 +33,25 @@ public class UseCase10CountTotalSeats {
 
         bogies.add(new Bogie("Sleeper", 72));
         bogies.add(new Bogie("AC Chair", 56));
-        bogies.add(new Bogie("First Class", 24));
-        bogies.add(new Bogie("Sleeper", 70));
+        bogies.add(new Bogie("First Class", 24));        bogies.add(new Bogie("Luxury Coach", 80));
 
-        System.out.println("Bogie List:");
+        System.out.println("Original Bogie List:");
         for (Bogie b : bogies) {
             System.out.println(b);
         }
 
-        int totalSeats =
+        List<Bogie> filteredBogies =
                 bogies.stream()
-                        .map(b -> b.getCapacity())
-                        .reduce(0, Integer::sum);
+                        .filter(b -> b.getCapacity() > 60)
+                        .collect(Collectors.toList());
 
-        System.out.println("\nTotal Seating Capacity: " + totalSeats);
+        System.out.println("\nFiltered Bogies (Capacity > 60):");
+        for (Bogie b : filteredBogies) {
+            System.out.println(b);
+        }
+
+        System.out.println("\nOriginal List Size: " + bogies.size());
+        System.out.println("Filtered List Size: " + filteredBogies.size());
 
         System.out.println("Program continues...");
     }
