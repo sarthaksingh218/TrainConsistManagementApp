@@ -23,7 +23,7 @@ class Bogie {
     }
 }
 
-public class UseCase8FilterPassengerBogies {
+public class TrainConsistentApp {
 
     public static void main(String[] args) {
 
