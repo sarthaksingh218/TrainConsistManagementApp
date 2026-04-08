@@ -2,10 +2,10 @@ import java.util.Arrays;
 
 public class TrainConsistApp {
 
-    public static boolean binarySearchBogieId(String[] bogieIds, String key) {
+    public static boolean searchBogieId(String[] bogieIds, String key) {
 
         if (bogieIds == null || bogieIds.length == 0) {
-            return false;
+            throw new IllegalStateException("Cannot perform search: No bogies available in the train.");
         }
 
         Arrays.sort(bogieIds);
@@ -21,11 +21,9 @@ public class TrainConsistApp {
 
             if (cmp == 0) {
                 return true;
-            }
-            else if (cmp < 0) {
+            } else if (cmp < 0) {
                 high = mid - 1;
-            }
-            else {
+            } else {
                 low = mid + 1;
             }
         }
@@ -37,18 +35,16 @@ public class TrainConsistApp {
 
         System.out.println("=== Train Consist Management App ===");
 
-        String[] bogieIds = {"BG101","BG205","BG309","BG412","BG550"};
+        String[] bogieIds = {"BG101","BG205","BG309"};
 
-        String searchKey = "BG309";
+        String searchKey = "BG205";
 
-        boolean found = binarySearchBogieId(bogieIds, searchKey);
+        boolean result = searchBogieId(bogieIds, searchKey);
 
-        if (found) {
-            System.out.println("Bogie ID " + searchKey + " found in consist.");
+        if (result) {
+            System.out.println("Bogie ID " + searchKey + " found.");
         } else {
             System.out.println("Bogie ID " + searchKey + " not found.");
         }
-
-        System.out.println("Program continues...");
     }
 }
